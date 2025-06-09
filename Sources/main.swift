@@ -5,6 +5,10 @@ import Logger
 let logger = Logger("main")
 
 let server = HttpServer()
+
+server.name = "WebCache"
+server.requestBodyLimit = .limit(.KB(250))
+
 let cacheServer = CacheServer(server: server)
 try server.start(8080)
 
