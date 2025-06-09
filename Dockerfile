@@ -1,4 +1,4 @@
-FROM swift:5.9 as builder
+FROM swift:6.0 as builder
 WORKDIR /app
 COPY . .
 RUN swift build -c release
@@ -7,7 +7,7 @@ RUN swift build -c release
 RUN mkdir output
 RUN cp -R $(swift build --show-bin-path -c release)/WebCache output/App
 
-FROM swift:5.9-slim
+FROM swift:6.0-slim
 WORKDIR /app
 COPY --from=builder /app/output/App .
 CMD ["./App"]
